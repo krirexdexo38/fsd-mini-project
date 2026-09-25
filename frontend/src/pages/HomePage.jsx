@@ -102,7 +102,7 @@ const HomePage = () => {
           {/* Main Headline */}
           <h1 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold text-foreground tracking-normal max-w-4xl mx-auto leading-[1.25] pointer-events-auto">
             Discover, Register & Experience{' '}
-            <span className="text-primary underline underline-offset-8 decoration-wavy decoration-2 decoration-accent">
+            <span className="text-primary underline underline-offset-8 decoration-wavy decoration-2 decoration-amber-500 dark:decoration-accent">
               Every Campus Event
             </span>
           </h1>
