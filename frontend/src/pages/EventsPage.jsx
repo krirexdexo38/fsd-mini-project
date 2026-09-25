@@ -81,7 +81,8 @@ const EventsPage = () => {
         {/* WebGL Particles Canvas */}
         <div className="absolute inset-0 z-0">
           <Particles
-            particleColors={isDark ? ['#ffffff'] : ['#09090b', '#18181b', '#27272a']}
+            key={isDark ? 'dark' : 'light'}
+            particleColors={isDark ? ['#ffffff'] : ['#000000', '#09090b', '#18181b']}
             particleCount={120}
             particleSpread={8}
             speed={0.1}
@@ -93,7 +94,7 @@ const EventsPage = () => {
         </div>
 
         {/* Ambient Gradient Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-r from-card via-card/85 to-transparent pointer-events-none z-0" />
+        <div className="absolute inset-0 bg-gradient-to-r from-card/60 via-card/30 to-transparent pointer-events-none z-0" />
 
         <div className="relative z-10 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div>

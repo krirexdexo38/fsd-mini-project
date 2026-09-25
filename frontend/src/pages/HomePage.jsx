@@ -77,7 +77,8 @@ const HomePage = () => {
         {/* WebGL Particles Canvas */}
         <div className="absolute inset-0 z-0">
           <Particles
-            particleColors={isDark ? ['#ffffff'] : ['#09090b', '#18181b', '#27272a']}
+            key={isDark ? 'dark' : 'light'}
+            particleColors={isDark ? ['#ffffff'] : ['#000000', '#09090b', '#18181b']}
             particleCount={200}
             particleSpread={10}
             speed={0.1}
@@ -89,7 +90,7 @@ const HomePage = () => {
         </div>
 
         {/* Ambient Gradient Overlay ensuring high contrast and legibility */}
-        <div className="absolute inset-0 bg-gradient-to-b from-background/30 via-background/60 to-background pointer-events-none z-0" />
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/20 to-background/60 pointer-events-none z-0" />
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center pointer-events-none">
           {/* Top Tag */}

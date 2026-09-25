@@ -60,7 +60,8 @@ const LoginPage = () => {
       {/* Full-bleed Interactive Notebook Particles Background */}
       <div className="absolute inset-0 z-0">
         <Particles
-          particleColors={isDark ? ['#ffffff'] : ['#09090b', '#18181b', '#27272a']}
+          key={isDark ? 'dark' : 'light'}
+          particleColors={isDark ? ['#ffffff'] : ['#000000', '#09090b', '#18181b']}
           particleCount={200}
           particleSpread={10}
           speed={0.1}
@@ -72,7 +73,7 @@ const LoginPage = () => {
       </div>
 
       {/* Ambient background vignette */}
-      <div className="absolute inset-0 bg-background/50 pointer-events-none z-0" />
+      <div className="absolute inset-0 bg-background/20 pointer-events-none z-0" />
 
       {/* Auth Card */}
       <div className="relative z-10 w-full max-w-md bg-card rounded-3xl p-8 border border-border shadow-lg space-y-6">
