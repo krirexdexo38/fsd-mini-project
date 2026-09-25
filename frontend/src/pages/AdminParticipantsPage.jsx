@@ -117,7 +117,7 @@ const AdminParticipantsPage = () => {
       <div>
         <Link
           to="/admin"
-          className="inline-flex items-center gap-2 text-xs font-bold text-slate-600 hover:text-indigo-600 transition-colors"
+          className="inline-flex items-center gap-2 text-xs font-bold text-muted-foreground hover:text-primary transition-colors"
         >
           <ArrowLeft className="w-4 h-4" />
           <span>Back to Organizer Console</span>
@@ -125,7 +125,7 @@ const AdminParticipantsPage = () => {
       </div>
 
       {/* Event Header Banner Card */}
-      <div className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/80 shadow-soft flex flex-col md:flex-row md:items-center justify-between gap-6">
+      <div className="bg-card rounded-3xl p-6 sm:p-8 border border-border shadow-soft flex flex-col md:flex-row md:items-center justify-between gap-6">
         <div className="space-y-2">
           <div className="flex items-center gap-2">
             <Badge variant={event?.category}>{event?.category}</Badge>
@@ -133,36 +133,36 @@ const AdminParticipantsPage = () => {
               {event?.status}
             </Badge>
           </div>
-          <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+          <h1 className="text-2xl sm:text-3xl font-extrabold text-foreground tracking-tight font-serif">
             {event?.title}
           </h1>
-          <p className="text-xs sm:text-sm text-slate-500 font-medium">
+          <p className="text-xs sm:text-sm text-muted-foreground font-medium">
             {event?.venue} • Organised by {event?.organizer}
           </p>
         </div>
 
         <div className="flex items-center gap-3">
-          <div className="text-right px-4 py-2 bg-indigo-50 border border-indigo-100 rounded-2xl">
-            <p className="text-xs font-bold text-slate-500 uppercase">Enrolled</p>
-            <p className="text-2xl font-extrabold text-indigo-600">
+          <div className="text-right px-4 py-2 bg-primary/10 border border-primary/20 rounded-2xl">
+            <p className="text-xs font-bold text-muted-foreground uppercase">Enrolled</p>
+            <p className="text-2xl font-extrabold text-primary font-serif">
               {event?.registeredCount} / {event?.capacity}
             </p>
           </div>
 
           <button
             onClick={handleExportCSV}
-            className="inline-flex items-center gap-2 px-4 py-3 rounded-2xl text-xs font-bold text-slate-700 bg-white border border-slate-200 hover:bg-slate-50 shadow-soft transition-colors"
+            className="inline-flex items-center gap-2 px-4 py-3 rounded-2xl text-xs font-bold text-foreground bg-card border border-border hover:bg-muted shadow-soft transition-colors"
           >
-            <Download className="w-4 h-4 text-indigo-600" />
+            <Download className="w-4 h-4 text-primary" />
             <span className="hidden sm:inline">Export CSV</span>
           </button>
         </div>
       </div>
 
       {/* Participants Filter and Table */}
-      <div className="bg-white rounded-3xl border border-slate-200/80 shadow-soft overflow-hidden space-y-4">
+      <div className="bg-card rounded-3xl border border-border shadow-soft overflow-hidden space-y-4">
         {/* Filter Controls */}
-        <div className="p-6 border-b border-slate-100 flex flex-col md:flex-row items-center justify-between gap-4">
+        <div className="p-6 border-b border-border flex flex-col md:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-2 w-full md:w-auto overflow-x-auto pb-1">
             {['all', 'registered', 'attended', 'absent', 'cancelled'].map(
               (tab) => (
@@ -171,8 +171,8 @@ const AdminParticipantsPage = () => {
                   onClick={() => setStatusFilter(tab)}
                   className={`px-3 py-1.5 rounded-xl text-xs font-bold capitalize whitespace-nowrap transition-colors ${
                     statusFilter === tab
-                      ? 'bg-indigo-600 text-white shadow-sm'
-                      : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
+                      ? 'bg-primary text-primary-foreground shadow-2xs'
+                      : 'bg-muted text-muted-foreground hover:bg-muted/80 hover:text-foreground'
                   }`}
                 >
                   {tab}
@@ -182,13 +182,13 @@ const AdminParticipantsPage = () => {
           </div>
 
           <div className="relative w-full md:w-72">
-            <Search className="w-4 h-4 text-slate-400 absolute left-3 top-3 pointer-events-none" />
+            <Search className="w-4 h-4 text-muted-foreground absolute left-3 top-3 pointer-events-none" />
             <input
               type="text"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Search by student name, ID..."
-              className="w-full pl-9 pr-3.5 py-2 rounded-xl border border-slate-200 text-xs focus:border-indigo-500 outline-none"
+              className="w-full pl-9 pr-3.5 py-2 rounded-xl border border-input bg-card text-foreground text-xs focus:border-primary outline-none placeholder:text-muted-foreground/60"
             />
           </div>
         </div>
@@ -196,7 +196,7 @@ const AdminParticipantsPage = () => {
         {/* Table View */}
         <div className="overflow-x-auto">
           <table className="w-full text-left text-sm">
-            <thead className="bg-slate-50 text-[11px] font-bold text-slate-500 uppercase tracking-wider border-b border-slate-200">
+            <thead className="bg-muted text-[11px] font-bold text-muted-foreground uppercase tracking-wider border-b border-border">
               <tr>
                 <th className="py-3 px-5">Student Name</th>
                 <th className="py-3 px-4">Email</th>
@@ -206,10 +206,10 @@ const AdminParticipantsPage = () => {
                 <th className="py-3 px-5 text-right">Update Status</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-slate-100 text-xs">
+            <tbody className="divide-y divide-border text-xs text-foreground/85">
               {participants.length === 0 ? (
                 <tr>
-                  <td colSpan={6} className="py-12 text-center text-slate-400">
+                  <td colSpan={6} className="py-12 text-center text-muted-foreground">
                     No participants found matching current filter.
                   </td>
                 </tr>
@@ -219,32 +219,32 @@ const AdminParticipantsPage = () => {
                   return (
                     <tr
                       key={reg._id}
-                      className="hover:bg-slate-50/70 transition-colors"
+                      className="hover:bg-muted/40 transition-colors"
                     >
                       {/* Name */}
-                      <td className="py-3.5 px-5 font-bold text-slate-900">
+                      <td className="py-3.5 px-5 font-bold text-foreground">
                         {reg.user?.name || 'Unknown Student'}
                       </td>
 
                       {/* Email */}
-                      <td className="py-3.5 px-4 text-slate-600">
+                      <td className="py-3.5 px-4 text-muted-foreground">
                         {reg.user?.email}
                       </td>
 
                       {/* Department & ID */}
-                      <td className="py-3.5 px-4 text-slate-600">
+                      <td className="py-3.5 px-4 text-muted-foreground">
                         <p className="truncate max-w-[180px]">
                           {reg.user?.department || '—'}
                         </p>
                         {reg.user?.studentId && (
-                          <span className="text-[10px] font-bold text-indigo-600">
+                          <span className="text-[10px] font-bold text-primary">
                             ID: {reg.user?.studentId}
                           </span>
                         )}
                       </td>
 
                       {/* Registered Date */}
-                      <td className="py-3.5 px-4 text-slate-500 whitespace-nowrap">
+                      <td className="py-3.5 px-4 text-muted-foreground whitespace-nowrap">
                         {regDate.toLocaleDateString('en-US', {
                           month: 'short',
                           day: 'numeric',
@@ -267,7 +267,7 @@ const AdminParticipantsPage = () => {
                           onChange={(e) =>
                             handleStatusChange(reg._id, e.target.value)
                           }
-                          className="px-2.5 py-1 rounded-lg border border-slate-200 text-xs font-semibold text-slate-700 bg-white hover:border-indigo-500 focus:border-indigo-500 outline-none cursor-pointer disabled:opacity-50"
+                          className="px-2.5 py-1 rounded-lg border border-input text-xs font-semibold text-foreground bg-card hover:border-primary focus:border-primary outline-none cursor-pointer disabled:opacity-50"
                         >
                           <option value="registered">Registered</option>
                           <option value="attended">Attended</option>

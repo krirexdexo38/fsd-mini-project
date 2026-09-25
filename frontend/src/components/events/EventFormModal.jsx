@@ -131,7 +131,7 @@ const EventFormModal = ({ isOpen, onClose, event = null, onSuccess }) => {
       <form onSubmit={handleSubmit} className="space-y-4 text-left">
         {/* Title */}
         <div>
-          <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
+          <label className="block text-xs font-bold text-foreground uppercase tracking-wider mb-1">
             Event Title *
           </label>
           <input
@@ -141,13 +141,13 @@ const EventFormModal = ({ isOpen, onClose, event = null, onSuccess }) => {
             value={formData.title}
             onChange={handleChange}
             placeholder="e.g. CodeSprint 2026: 24h Campus Hackathon"
-            className="w-full px-3.5 py-2 rounded-xl border border-slate-200 text-sm focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100 outline-none"
+            className="w-full px-3.5 py-2 rounded-xl border border-input bg-card text-foreground text-sm focus:border-primary outline-none placeholder:text-muted-foreground/60"
           />
         </div>
 
         {/* Description */}
         <div>
-          <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
+          <label className="block text-xs font-bold text-foreground uppercase tracking-wider mb-1">
             Description *
           </label>
           <textarea
@@ -157,21 +157,21 @@ const EventFormModal = ({ isOpen, onClose, event = null, onSuccess }) => {
             value={formData.description}
             onChange={handleChange}
             placeholder="Describe the schedule, eligibility, perks, and highlights..."
-            className="w-full px-3.5 py-2 rounded-xl border border-slate-200 text-sm focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100 outline-none resize-none"
+            className="w-full px-3.5 py-2 rounded-xl border border-input bg-card text-foreground text-sm focus:border-primary outline-none resize-none placeholder:text-muted-foreground/60"
           />
         </div>
 
         {/* Category & Status */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
-            <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
+            <label className="block text-xs font-bold text-foreground uppercase tracking-wider mb-1">
               Category *
             </label>
             <select
               name="category"
               value={formData.category}
               onChange={handleChange}
-              className="w-full px-3 py-2 rounded-xl border border-slate-200 text-sm focus:border-indigo-500 outline-none bg-white"
+              className="w-full px-3 py-2 rounded-xl border border-input bg-card text-foreground text-sm focus:border-primary outline-none cursor-pointer"
             >
               {CATEGORIES.map((cat) => (
                 <option key={cat} value={cat}>
@@ -182,14 +182,14 @@ const EventFormModal = ({ isOpen, onClose, event = null, onSuccess }) => {
           </div>
 
           <div>
-            <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
+            <label className="block text-xs font-bold text-foreground uppercase tracking-wider mb-1">
               Status *
             </label>
             <select
               name="status"
               value={formData.status}
               onChange={handleChange}
-              className="w-full px-3 py-2 rounded-xl border border-slate-200 text-sm focus:border-indigo-500 outline-none bg-white capitalize"
+              className="w-full px-3 py-2 rounded-xl border border-input bg-card text-foreground text-sm focus:border-primary outline-none cursor-pointer capitalize"
             >
               <option value="published">Published</option>
               <option value="draft">Draft</option>
@@ -202,7 +202,7 @@ const EventFormModal = ({ isOpen, onClose, event = null, onSuccess }) => {
         {/* Organizer & Venue */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
-            <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
+            <label className="block text-xs font-bold text-foreground uppercase tracking-wider mb-1">
               Organizer / Club *
             </label>
             <input
@@ -212,12 +212,12 @@ const EventFormModal = ({ isOpen, onClose, event = null, onSuccess }) => {
               value={formData.organizer}
               onChange={handleChange}
               placeholder="e.g. ACM Student Chapter"
-              className="w-full px-3.5 py-2 rounded-xl border border-slate-200 text-sm focus:border-indigo-500 outline-none"
+              className="w-full px-3.5 py-2 rounded-xl border border-input bg-card text-foreground text-sm focus:border-primary outline-none placeholder:text-muted-foreground/60"
             />
           </div>
 
           <div>
-            <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
+            <label className="block text-xs font-bold text-foreground uppercase tracking-wider mb-1">
               Venue *
             </label>
             <input
@@ -227,7 +227,7 @@ const EventFormModal = ({ isOpen, onClose, event = null, onSuccess }) => {
               value={formData.venue}
               onChange={handleChange}
               placeholder="e.g. Auditorium Hall B"
-              className="w-full px-3.5 py-2 rounded-xl border border-slate-200 text-sm focus:border-indigo-500 outline-none"
+              className="w-full px-3.5 py-2 rounded-xl border border-input bg-card text-foreground text-sm focus:border-primary outline-none placeholder:text-muted-foreground/60"
             />
           </div>
         </div>
@@ -235,7 +235,7 @@ const EventFormModal = ({ isOpen, onClose, event = null, onSuccess }) => {
         {/* Date & Deadline */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
-            <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
+            <label className="block text-xs font-bold text-foreground uppercase tracking-wider mb-1">
               Event Date *
             </label>
             <input
@@ -244,12 +244,12 @@ const EventFormModal = ({ isOpen, onClose, event = null, onSuccess }) => {
               required
               value={formData.date}
               onChange={handleChange}
-              className="w-full px-3.5 py-2 rounded-xl border border-slate-200 text-sm focus:border-indigo-500 outline-none"
+              className="w-full px-3.5 py-2 rounded-xl border border-input bg-card text-foreground text-sm focus:border-primary outline-none"
             />
           </div>
 
           <div>
-            <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
+            <label className="block text-xs font-bold text-foreground uppercase tracking-wider mb-1">
               Registration Deadline *
             </label>
             <input
@@ -258,7 +258,7 @@ const EventFormModal = ({ isOpen, onClose, event = null, onSuccess }) => {
               required
               value={formData.registrationDeadline}
               onChange={handleChange}
-              className="w-full px-3.5 py-2 rounded-xl border border-slate-200 text-sm focus:border-indigo-500 outline-none"
+              className="w-full px-3.5 py-2 rounded-xl border border-input bg-card text-foreground text-sm focus:border-primary outline-none"
             />
           </div>
         </div>
@@ -266,7 +266,7 @@ const EventFormModal = ({ isOpen, onClose, event = null, onSuccess }) => {
         {/* Timings & Capacity */}
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
           <div>
-            <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
+            <label className="block text-xs font-bold text-foreground uppercase tracking-wider mb-1">
               Start Time *
             </label>
             <input
@@ -276,12 +276,12 @@ const EventFormModal = ({ isOpen, onClose, event = null, onSuccess }) => {
               value={formData.startTime}
               onChange={handleChange}
               placeholder="10:00 AM"
-              className="w-full px-3 py-2 rounded-xl border border-slate-200 text-sm focus:border-indigo-500 outline-none"
+              className="w-full px-3 py-2 rounded-xl border border-input bg-card text-foreground text-sm focus:border-primary outline-none placeholder:text-muted-foreground/60"
             />
           </div>
 
           <div>
-            <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
+            <label className="block text-xs font-bold text-foreground uppercase tracking-wider mb-1">
               End Time *
             </label>
             <input
@@ -291,12 +291,12 @@ const EventFormModal = ({ isOpen, onClose, event = null, onSuccess }) => {
               value={formData.endTime}
               onChange={handleChange}
               placeholder="01:00 PM"
-              className="w-full px-3 py-2 rounded-xl border border-slate-200 text-sm focus:border-indigo-500 outline-none"
+              className="w-full px-3 py-2 rounded-xl border border-input bg-card text-foreground text-sm focus:border-primary outline-none placeholder:text-muted-foreground/60"
             />
           </div>
 
           <div>
-            <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
+            <label className="block text-xs font-bold text-foreground uppercase tracking-wider mb-1">
               Capacity (Seats) *
             </label>
             <input
@@ -306,14 +306,14 @@ const EventFormModal = ({ isOpen, onClose, event = null, onSuccess }) => {
               min={1}
               value={formData.capacity}
               onChange={handleChange}
-              className="w-full px-3 py-2 rounded-xl border border-slate-200 text-sm focus:border-indigo-500 outline-none"
+              className="w-full px-3 py-2 rounded-xl border border-input bg-card text-foreground text-sm focus:border-primary outline-none"
             />
           </div>
         </div>
 
         {/* Banner URL */}
         <div>
-          <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
+          <label className="block text-xs font-bold text-foreground uppercase tracking-wider mb-1">
             Banner Image URL
           </label>
           <input
@@ -322,26 +322,26 @@ const EventFormModal = ({ isOpen, onClose, event = null, onSuccess }) => {
             value={formData.bannerUrl}
             onChange={handleChange}
             placeholder="https://images.unsplash.com/..."
-            className="w-full px-3.5 py-2 rounded-xl border border-slate-200 text-sm focus:border-indigo-500 outline-none text-xs"
+            className="w-full px-3.5 py-2 rounded-xl border border-input bg-card text-foreground text-sm focus:border-primary outline-none text-xs placeholder:text-muted-foreground/60"
           />
-          <p className="text-[11px] text-slate-400 mt-1">
+          <p className="text-[11px] text-muted-foreground mt-1">
             Accepts any valid image URL or Unsplash photo link.
           </p>
         </div>
 
         {/* Form Actions */}
-        <div className="flex items-center justify-end gap-3 pt-4 border-t border-slate-100">
+        <div className="flex items-center justify-end gap-3 pt-4 border-t border-border">
           <button
             type="button"
             onClick={onClose}
-            className="px-4 py-2 text-xs font-bold text-slate-600 hover:text-slate-800 hover:bg-slate-100 rounded-xl transition-colors"
+            className="px-4 py-2 text-xs font-bold text-muted-foreground hover:text-foreground hover:bg-muted rounded-xl transition-colors"
           >
             Cancel
           </button>
           <button
             type="submit"
             disabled={loading}
-            className="px-5 py-2 text-xs font-bold text-white bg-indigo-600 hover:bg-indigo-700 rounded-xl shadow-sm hover:shadow transition-all disabled:opacity-50"
+            className="px-5 py-2 text-xs font-bold text-primary-foreground bg-primary hover:opacity-90 rounded-xl shadow-soft transition-all disabled:opacity-50"
           >
             {loading ? 'Saving...' : isEditing ? 'Update Event' : 'Create Event'}
           </button>

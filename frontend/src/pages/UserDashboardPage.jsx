@@ -96,21 +96,21 @@ const UserDashboardPage = () => {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-8">
       {/* Student Welcome Header */}
-      <div className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/80 shadow-soft flex flex-col md:flex-row md:items-center justify-between gap-6">
+      <div className="bg-card rounded-3xl p-6 sm:p-8 border border-border shadow-soft flex flex-col md:flex-row md:items-center justify-between gap-6">
         <div className="space-y-2">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-50 border border-indigo-100 text-xs font-bold text-indigo-700">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-xs font-bold text-primary">
             <GraduationCap className="w-4 h-4" />
             <span>Student Dashboard</span>
           </div>
-          <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+          <h1 className="text-2xl sm:text-3xl font-extrabold text-foreground tracking-tight font-serif">
             Welcome back, {user?.name}!
           </h1>
-          <p className="text-xs sm:text-sm text-slate-500 font-medium flex items-center gap-2 flex-wrap">
+          <p className="text-xs sm:text-sm text-muted-foreground font-medium flex items-center gap-2 flex-wrap">
             <span>{user?.department}</span>
             {user?.studentId && (
               <>
                 <span>•</span>
-                <span className="font-bold text-slate-700">
+                <span className="font-bold text-foreground">
                   ID: {user?.studentId}
                 </span>
               </>
@@ -122,7 +122,7 @@ const UserDashboardPage = () => {
 
         <Link
           to="/events"
-          className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl text-xs font-bold text-white bg-indigo-600 hover:bg-indigo-700 shadow-sm hover:shadow transition-all self-start md:self-auto"
+          className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl text-xs font-bold text-primary-foreground bg-primary hover:opacity-90 shadow-soft transition-all self-start md:self-auto"
         >
           <Compass className="w-4 h-4" />
           <span>Browse More Events</span>
@@ -156,13 +156,13 @@ const UserDashboardPage = () => {
 
       {/* Tabs */}
       <div className="space-y-6">
-        <div className="flex items-center gap-3 border-b border-slate-200">
+        <div className="flex items-center gap-4 border-b border-border">
           <button
             onClick={() => setActiveTab('upcoming')}
             className={`pb-3 text-sm font-bold transition-all relative ${
               activeTab === 'upcoming'
-                ? 'text-indigo-600 border-b-2 border-indigo-600'
-                : 'text-slate-500 hover:text-slate-800'
+                ? 'text-primary border-b-2 border-primary'
+                : 'text-muted-foreground hover:text-foreground'
             }`}
           >
             Upcoming Schedule ({upcomingRegistrations.length})
@@ -171,8 +171,8 @@ const UserDashboardPage = () => {
             onClick={() => setActiveTab('history')}
             className={`pb-3 text-sm font-bold transition-all relative ${
               activeTab === 'history'
-                ? 'text-indigo-600 border-b-2 border-indigo-600'
-                : 'text-slate-500 hover:text-slate-800'
+                ? 'text-primary border-b-2 border-primary'
+                : 'text-muted-foreground hover:text-foreground'
             }`}
           >
             Past & History ({historyRegistrations.length})
@@ -198,7 +198,7 @@ const UserDashboardPage = () => {
                   return (
                     <div
                       key={reg._id}
-                      className="bg-white rounded-2xl border border-slate-200/80 p-5 shadow-soft hover:shadow-card transition-all flex flex-col justify-between"
+                      className="bg-card rounded-2xl border border-border p-5 shadow-soft hover:shadow-card transition-all flex flex-col justify-between"
                     >
                       <div className="space-y-3">
                         <div className="flex items-center justify-between">
@@ -209,18 +209,18 @@ const UserDashboardPage = () => {
                         </div>
 
                         <Link to={`/events/${ev._id}`}>
-                          <h3 className="text-base font-bold text-slate-900 hover:text-indigo-600 transition-colors">
+                          <h3 className="text-base font-bold text-foreground hover:text-primary transition-colors font-serif">
                             {ev.title}
                           </h3>
                         </Link>
 
-                        <p className="text-xs text-slate-500 line-clamp-2">
+                        <p className="text-xs text-muted-foreground line-clamp-2">
                           {ev.description}
                         </p>
 
-                        <div className="space-y-1.5 text-xs text-slate-600 pt-2 border-t border-slate-100 font-medium">
+                        <div className="space-y-1.5 text-xs text-foreground/80 pt-2 border-t border-border font-medium">
                           <div className="flex items-center gap-2">
-                            <Calendar className="w-3.5 h-3.5 text-indigo-500" />
+                            <Calendar className="w-3.5 h-3.5 text-primary" />
                             <span>
                               {eventDate.toLocaleDateString('en-US', {
                                 weekday: 'short',
@@ -231,28 +231,28 @@ const UserDashboardPage = () => {
                             </span>
                           </div>
                           <div className="flex items-center gap-2">
-                            <Clock className="w-3.5 h-3.5 text-indigo-500" />
+                            <Clock className="w-3.5 h-3.5 text-primary" />
                             <span>
                               {ev.startTime} - {ev.endTime}
                             </span>
                           </div>
                           <div className="flex items-center gap-2">
-                            <MapPin className="w-3.5 h-3.5 text-indigo-500" />
+                            <MapPin className="w-3.5 h-3.5 text-primary" />
                             <span className="truncate">{ev.venue}</span>
                           </div>
                         </div>
                       </div>
 
-                      <div className="pt-4 mt-4 border-t border-slate-100 flex items-center justify-between gap-3">
+                      <div className="pt-4 mt-4 border-t border-border flex items-center justify-between gap-3">
                         <button
                           onClick={() => setSelectedCancelEvent(reg)}
-                          className="text-xs font-semibold text-rose-600 hover:text-rose-700 hover:underline"
+                          className="text-xs font-semibold text-destructive hover:underline"
                         >
                           Cancel Registration
                         </button>
                         <Link
                           to={`/events/${ev._id}`}
-                          className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold text-indigo-600 bg-indigo-50 hover:bg-indigo-100 transition-colors"
+                          className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold text-primary bg-primary/10 hover:bg-primary hover:text-primary-foreground transition-colors"
                         >
                           <span>Event Details</span>
                           <ArrowRight className="w-3 h-3" />
@@ -276,10 +276,10 @@ const UserDashboardPage = () => {
                 message="Your past event registrations and attendance history will be archived here."
               />
             ) : (
-              <div className="bg-white rounded-2xl border border-slate-200/80 overflow-hidden shadow-soft">
+              <div className="bg-card rounded-2xl border border-border overflow-hidden shadow-soft">
                 <div className="overflow-x-auto">
                   <table className="w-full text-left text-sm">
-                    <thead className="bg-slate-50 text-[11px] font-bold text-slate-500 uppercase tracking-wider border-b border-slate-200">
+                    <thead className="bg-muted text-[11px] font-bold text-muted-foreground uppercase tracking-wider border-b border-border">
                       <tr>
                         <th className="py-3 px-4">Event</th>
                         <th className="py-3 px-4">Category</th>
@@ -289,26 +289,26 @@ const UserDashboardPage = () => {
                         <th className="py-3 px-4 text-right">Action</th>
                       </tr>
                     </thead>
-                    <tbody className="divide-y divide-slate-100 text-xs">
+                    <tbody className="divide-y divide-border text-xs text-foreground/85">
                       {historyRegistrations.map((reg) => {
                         const ev = reg.event;
                         const eventDate = new Date(ev.date);
                         return (
-                          <tr key={reg._id} className="hover:bg-slate-50/50 transition-colors">
-                            <td className="py-3.5 px-4 font-bold text-slate-900">
+                          <tr key={reg._id} className="hover:bg-muted/40 transition-colors">
+                            <td className="py-3.5 px-4 font-bold text-foreground font-serif">
                               {ev.title}
                             </td>
                             <td className="py-3.5 px-4">
                               <Badge variant={ev.category}>{ev.category}</Badge>
                             </td>
-                            <td className="py-3.5 px-4 text-slate-600 whitespace-nowrap">
+                            <td className="py-3.5 px-4 text-muted-foreground whitespace-nowrap">
                               {eventDate.toLocaleDateString('en-US', {
                                 month: 'short',
                                 day: 'numeric',
                                 year: 'numeric',
                               })}
                             </td>
-                            <td className="py-3.5 px-4 text-slate-600 truncate max-w-[150px]">
+                            <td className="py-3.5 px-4 text-muted-foreground truncate max-w-[150px]">
                               {ev.venue}
                             </td>
                             <td className="py-3.5 px-4">
@@ -319,7 +319,7 @@ const UserDashboardPage = () => {
                             <td className="py-3.5 px-4 text-right">
                               <Link
                                 to={`/events/${ev._id}`}
-                                className="text-indigo-600 hover:text-indigo-700 font-bold hover:underline"
+                                className="text-primary hover:underline font-bold"
                               >
                                 View
                               </Link>
@@ -343,25 +343,25 @@ const UserDashboardPage = () => {
         title="Cancel Registration"
       >
         <div className="space-y-4">
-          <p className="text-sm text-slate-600 leading-relaxed">
+          <p className="text-sm text-muted-foreground leading-relaxed">
             Are you sure you want to cancel your seat for{' '}
-            <strong className="text-slate-900">
+            <strong className="text-foreground">
               {selectedCancelEvent?.event?.title}
             </strong>
             ? Your seat will be freed up for fellow students.
           </p>
 
-          <div className="flex items-center justify-end gap-3 pt-3 border-t border-slate-100">
+          <div className="flex items-center justify-end gap-3 pt-3 border-t border-border">
             <button
               onClick={() => setSelectedCancelEvent(null)}
-              className="px-4 py-2 text-xs font-bold text-slate-600 hover:bg-slate-100 rounded-xl transition-colors"
+              className="px-4 py-2 text-xs font-bold text-muted-foreground hover:bg-muted rounded-xl transition-colors"
             >
               Keep My Registration
             </button>
             <button
               onClick={handleCancelRegistration}
               disabled={cancelLoading}
-              className="px-4 py-2 text-xs font-bold text-white bg-rose-600 hover:bg-rose-700 rounded-xl transition-colors disabled:opacity-50"
+              className="px-4 py-2 text-xs font-bold text-destructive-foreground bg-destructive hover:opacity-90 rounded-xl transition-opacity disabled:opacity-50"
             >
               {cancelLoading ? 'Cancelling...' : 'Confirm Cancellation'}
             </button>

@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
 import { ToastProvider } from './context/ToastContext';
+import { ThemeProvider } from './context/ThemeContext';
 
 // Components
 import Navbar from './components/common/Navbar';
@@ -21,11 +22,12 @@ import AdminParticipantsPage from './pages/AdminParticipantsPage';
 function App() {
   return (
     <Router>
-      <AuthProvider>
-        <ToastProvider>
-          <div className="flex flex-col min-h-screen bg-slate-50 text-slate-800">
-            <Navbar />
-            <main className="flex-1">
+      <ThemeProvider>
+        <AuthProvider>
+          <ToastProvider>
+            <div className="flex flex-col min-h-screen bg-background text-foreground transition-colors duration-300">
+              <Navbar />
+              <main className="flex-1">
               <Routes>
                 {/* Public Routes */}
                 <Route path="/" element={<HomePage />} />
@@ -70,6 +72,7 @@ function App() {
           </div>
         </ToastProvider>
       </AuthProvider>
+      </ThemeProvider>
     </Router>
   );
 }
