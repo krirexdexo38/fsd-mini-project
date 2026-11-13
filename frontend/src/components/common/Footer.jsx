@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { CalendarDays, Heart, GraduationCap } from 'lucide-react';
+import { CalendarDays } from 'lucide-react';
 
 const Footer = () => {
   return (
@@ -9,46 +9,42 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
           {/* Brand Info */}
           <div className="space-y-4 md:col-span-1">
-            <Link to="/" className="flex items-center gap-2.5">
-              <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-primary to-accent flex items-center justify-center text-primary-foreground shadow-2xs">
+            <Link to="/" className="flex items-center gap-3">
+              <div className="w-9 h-9 rounded-lg bg-primary flex items-center justify-center text-primary-foreground border border-border">
                 <CalendarDays className="w-5 h-5" />
               </div>
-              <span className="text-xl font-extrabold tracking-tight text-foreground font-serif">
+              <span className="text-xl font-bold tracking-tight text-foreground font-display">
                 CampusHub
               </span>
             </Link>
             <p className="text-sm leading-relaxed text-muted-foreground">
-              The unified campus event platform connecting students with hackathons,
-              cultural fests, technical workshops, and sports championships in an elegant luxury atmosphere.
+              A streamlined campus platform connecting students with hackathons, workshops, and college tournaments.
             </p>
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-muted border border-border text-xs font-semibold text-primary">
-              <GraduationCap className="w-4 h-4" /> Full Stack Dev II Mini Project
-            </div>
           </div>
 
           {/* Quick Navigation */}
           <div>
-            <h4 className="text-foreground font-bold text-sm tracking-wider uppercase mb-4 font-serif">
+            <h4 className="text-foreground font-bold text-sm mb-4">
               Explore
             </h4>
             <ul className="space-y-2.5 text-sm">
               <li>
-                <Link to="/events" className="hover:text-primary transition-colors">
+                <Link to="/events" className="hover:text-foreground transition-colors">
                   Upcoming Events
                 </Link>
               </li>
               <li>
-                <Link to="/events?category=Technical" className="hover:text-primary transition-colors">
+                <Link to="/events?category=Technical" className="hover:text-foreground transition-colors">
                   Hackathons & Coding
                 </Link>
               </li>
               <li>
-                <Link to="/events?category=Cultural" className="hover:text-primary transition-colors">
-                  Cultural Galas
+                <Link to="/events?category=Cultural" className="hover:text-foreground transition-colors">
+                  Cultural Events
                 </Link>
               </li>
               <li>
-                <Link to="/events?category=Sports" className="hover:text-primary transition-colors">
+                <Link to="/events?category=Sports" className="hover:text-foreground transition-colors">
                   Sports Tournaments
                 </Link>
               </li>
@@ -57,61 +53,54 @@ const Footer = () => {
 
           {/* Student Portal */}
           <div>
-            <h4 className="text-foreground font-bold text-sm tracking-wider uppercase mb-4 font-serif">
-              Student Hub
+            <h4 className="text-foreground font-bold text-sm mb-4">
+              Portal
             </h4>
             <ul className="space-y-2.5 text-sm">
               <li>
-                <Link to="/dashboard" className="hover:text-primary transition-colors">
+                <Link to="/dashboard" className="hover:text-foreground transition-colors">
                   My Registrations
                 </Link>
               </li>
               <li>
-                <Link to="/login" className="hover:text-primary transition-colors">
-                  Student Sign In
+                <Link to="/login" className="hover:text-foreground transition-colors">
+                  Sign In
                 </Link>
               </li>
               <li>
-                <Link to="/register" className="hover:text-primary transition-colors">
+                <Link to="/register" className="hover:text-foreground transition-colors">
                   Create Account
                 </Link>
               </li>
               <li>
-                <Link to="/admin" className="hover:text-primary transition-colors">
+                <Link to="/admin" className="hover:text-foreground transition-colors">
                   Organizer Console
                 </Link>
               </li>
             </ul>
           </div>
 
-          {/* Tech Stack Info */}
+          {/* Platform Info */}
           <div>
-            <h4 className="text-foreground font-bold text-sm tracking-wider uppercase mb-4 font-serif">
-              MERN Stack Architecture
+            <h4 className="text-foreground font-bold text-sm mb-4">
+              Architecture
             </h4>
-            <p className="text-xs text-muted-foreground leading-relaxed mb-3">
-              Engineered with MongoDB Atlas, Express.js, React.js (Vite), Node.js,
-              and Tailwind CSS with JWT security.
+            <p className="text-sm text-muted-foreground leading-relaxed">
+              Full stack platform built with MongoDB, Express, React, and Node.js.
             </p>
-            <div className="flex flex-wrap gap-1.5">
-              {['MongoDB', 'Express', 'React', 'Node.js', 'Tailwind', 'JWT', 'WebGL'].map((tech) => (
-                <span
-                  key={tech}
-                  className="px-2 py-0.5 rounded text-[11px] font-semibold bg-muted text-foreground/80 border border-border"
-                >
-                  {tech}
-                </span>
-              ))}
-            </div>
           </div>
         </div>
 
-        {/* Bottom Credits */}
-        <div className="pt-8 border-t border-border flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-muted-foreground">
-          <p>© {new Date().getFullYear()} CampusHub Event Portal. Built for 5th Sem CSE Mini-Project.</p>
-          <p className="flex items-center gap-1.5">
-            Designed with <Heart className="w-3.5 h-3.5 text-primary fill-primary" /> for university viva demonstration
-          </p>
+        <div className="pt-8 border-t border-border flex flex-col sm:flex-row items-center justify-between text-sm text-muted-foreground gap-4">
+          <p>© {new Date().getFullYear()} CampusHub. All rights reserved.</p>
+          <div className="flex items-center gap-6">
+            <Link to="/events" className="hover:text-foreground transition-colors">
+              Events
+            </Link>
+            <Link to="/login" className="hover:text-foreground transition-colors">
+              Sign In
+            </Link>
+          </div>
         </div>
       </div>
     </footer>

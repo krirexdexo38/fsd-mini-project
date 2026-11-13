@@ -1,0 +1,30 @@
+# render.yaml — Render Blueprint for CampusHub
+# Docs: https://render.com/docs/blueprint-spec
+#
+# This file lives at the REPO ROOT.
+# It tells Render: "there is one web service; find it in backend/".
+# Render will run `npm install` then `npm start` inside backend/.
+
+services:
+  - type: web
+    name: campushub-api
+    runtime: node
+    rootDir: backend
+    buildCommand: npm install
+    startCommand: npm start
+    plan: free                  # change to "starter" if you need always-on
+    healthCheckPath: /api/health
+
+    envVars:
+      - key: NODE_ENV
+        value: production
+
+      # ── Secrets: set these in the Render dashboard, not here ──
+      - key: MONGODB_URI
+        sync: false             # Render will prompt you to fill this in
+
+      - key: JWT_SECRET
+        sync: false             # Render will prompt you to fill this in
+
+      - key: CLIENT_URL
+        sync: false             # Set to your Netlify URL, e.g. https://campushub.netlify.app

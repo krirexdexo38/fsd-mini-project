@@ -20,6 +20,37 @@ const registrationSchema = new mongoose.Schema(
       default: 'registered',
       index: true,
     },
+    registrationType: {
+      type: String,
+      enum: ['individual', 'team'],
+      default: 'individual',
+    },
+    teamName: {
+      type: String,
+      trim: true,
+      default: '',
+    },
+    teamSize: {
+      type: Number,
+      default: 1,
+      min: 1,
+      max: 10,
+    },
+    teamMembers: [
+      {
+        name: { type: String, trim: true },
+        email: { type: String, trim: true },
+        studentId: { type: String, trim: true },
+        department: { type: String, trim: true },
+        role: { type: String, trim: true, default: 'Member' },
+        phone: { type: String, trim: true },
+      },
+    ],
+    primaryContact: {
+      phone: { type: String, trim: true },
+      college: { type: String, trim: true },
+      notes: { type: String, trim: true },
+    },
     registeredAt: {
       type: Date,
       default: Date.now,

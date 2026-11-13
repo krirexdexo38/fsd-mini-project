@@ -60,10 +60,10 @@ export default {
         },
       },
       fontFamily: {
-        sans: ['"Architects Daughter"', 'var(--font-sans)', 'sans-serif'],
-        serif: ['var(--font-serif)', 'Georgia', 'serif'],
+        sans: ['var(--font-sans)', 'ui-sans-serif', 'sans-serif', 'system-ui'],
+        serif: ['var(--font-serif)', 'Lora', 'Georgia', 'serif'],
         mono: ['var(--font-mono)', '"Fira Code"', 'monospace'],
-        notebook: ['"Architects Daughter"', 'cursive', 'sans-serif'],
+        display: ['var(--font-sans)', 'ui-sans-serif', 'sans-serif'],
       },
       borderRadius: {
         sm: 'calc(var(--radius) - 4px)',

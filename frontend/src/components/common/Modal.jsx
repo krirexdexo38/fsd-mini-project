@@ -24,19 +24,19 @@ const Modal = ({ isOpen, onClose, title, children, maxWidth = 'max-w-xl' }) => {
     <div className="fixed inset-0 z-50 overflow-y-auto">
       {/* Backdrop */}
       <div
-        className="fixed inset-0 bg-black/60 backdrop-blur-sm transition-opacity"
+        className="fixed inset-0 bg-black/60 transition-opacity"
         onClick={onClose}
       />
 
       {/* Modal Dialog */}
       <div className="flex min-h-full items-center justify-center p-4 text-center">
         <div
-          className={`relative transform overflow-hidden rounded-2xl bg-card text-left shadow-2xl transition-all w-full ${maxWidth} border border-border my-8`}
+          className={`relative transform overflow-hidden rounded-xl bg-card text-left shadow-2xl transition-all w-full ${maxWidth} border border-border my-8`}
           onClick={(e) => e.stopPropagation()}
         >
           {/* Header */}
           <div className="flex items-center justify-between px-6 py-4 border-b border-border bg-muted/40">
-            <h3 className="text-lg font-bold text-foreground font-serif">{title}</h3>
+            <h3 className="text-lg font-bold text-foreground font-display">{title}</h3>
             <button
               onClick={onClose}
               className="rounded-lg p-1 text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"

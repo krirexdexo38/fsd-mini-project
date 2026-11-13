@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { CalendarDays, UserPlus, Eye, EyeOff } from 'lucide-react';
+import { CalendarDays, Eye, EyeOff } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import { useToast } from '../context/ToastContext';
-import { useTheme } from '../context/ThemeContext';
-import Particles from '../components/common/Particles';
 
 const DEPARTMENTS = [
   'Computer Science & Engineering',
@@ -18,7 +16,6 @@ const DEPARTMENTS = [
 ];
 
 const RegisterPage = () => {
-  const { isDark } = useTheme();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -64,35 +61,18 @@ const RegisterPage = () => {
   };
 
   return (
-    <div className="relative min-h-[calc(100vh-4rem)] flex items-center justify-center px-4 py-12 overflow-hidden">
-      {/* Full-bleed Interactive Notebook Particles Background */}
-      <div className="absolute inset-0 z-0">
-        <Particles
-          key={isDark ? 'dark' : 'light'}
-          particleColors={isDark ? ['#ffffff'] : ['#000000', '#09090b', '#18181b']}
-          particleCount={200}
-          particleSpread={10}
-          speed={0.1}
-          particleBaseSize={100}
-          moveParticlesOnHover={true}
-          alphaParticles={false}
-          disableRotation={false}
-        />
-      </div>
-
-      <div className="absolute inset-0 bg-background/20 pointer-events-none z-0" />
-
-      <div className="relative z-10 w-full max-w-lg bg-card rounded-3xl p-8 border border-border shadow-lg space-y-6">
+    <div className="min-h-[calc(100vh-4rem)] flex items-center justify-center px-4 py-12">
+      <div className="w-full max-w-lg bg-card rounded-xl p-8 border border-border space-y-6">
         {/* Header */}
         <div className="text-center space-y-2">
-          <div className="w-12 h-12 rounded-2xl bg-muted border border-border text-primary flex items-center justify-center mx-auto shadow-xs">
-            <CalendarDays className="w-6 h-6" />
+          <div className="w-10 h-10 rounded-lg bg-primary border border-border text-primary-foreground flex items-center justify-center mx-auto">
+            <CalendarDays className="w-5 h-5" />
           </div>
-          <h2 className="text-2xl font-extrabold text-foreground tracking-normal">
+          <h2 className="text-2xl font-bold text-foreground font-display">
             Create Campus Account
           </h2>
-          <p className="text-xs text-muted-foreground">
-            Join thousands of university students registering for events
+          <p className="text-sm text-muted-foreground">
+            Register to participate in hackathons, workshops, and college events
           </p>
         </div>
 
@@ -100,7 +80,7 @@ const RegisterPage = () => {
         <form onSubmit={handleSubmit} className="space-y-4">
           {/* Full Name */}
           <div>
-            <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1">
+            <label className="block text-sm font-medium text-foreground mb-1.5">
               Full Name *
             </label>
             <input
@@ -109,14 +89,14 @@ const RegisterPage = () => {
               required
               value={formData.name}
               onChange={handleChange}
-              placeholder="e.g. Ananya Verma"
-              className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 dark:border-white/15 bg-white dark:bg-slate-800 text-slate-900 dark:text-white text-sm focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 outline-none transition-all placeholder:text-slate-400"
+              placeholder="e.g. Krish Khanna"
+              className="w-full px-3.5 py-2.5 rounded-lg border border-input bg-background text-foreground text-sm focus:border-primary outline-none transition-colors placeholder:text-muted-foreground"
             />
           </div>
 
           {/* Email */}
           <div>
-            <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1">
+            <label className="block text-sm font-medium text-foreground mb-1.5">
               University Email Address *
             </label>
             <input
@@ -126,14 +106,14 @@ const RegisterPage = () => {
               value={formData.email}
               onChange={handleChange}
               placeholder="student@campushub.edu"
-              className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 dark:border-white/15 bg-white dark:bg-slate-800 text-slate-900 dark:text-white text-sm focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 outline-none transition-all placeholder:text-slate-400"
+              className="w-full px-3.5 py-2.5 rounded-lg border border-input bg-background text-foreground text-sm focus:border-primary outline-none transition-colors placeholder:text-muted-foreground"
             />
           </div>
 
           {/* Password */}
           <div>
-            <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1">
-              Password (min. 6 chars) *
+            <label className="block text-sm font-medium text-foreground mb-1.5">
+              Password (min. 6 characters) *
             </label>
             <div className="relative">
               <input
@@ -143,13 +123,13 @@ const RegisterPage = () => {
                 minLength={6}
                 value={formData.password}
                 onChange={handleChange}
-                placeholder="Create a strong password"
-                className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 dark:border-white/15 bg-white dark:bg-slate-800 text-slate-900 dark:text-white text-sm focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 outline-none transition-all pr-10 placeholder:text-slate-400"
+                placeholder="Create a password"
+                className="w-full px-3.5 py-2.5 rounded-lg border border-input bg-background text-foreground text-sm focus:border-primary outline-none transition-colors pr-10 placeholder:text-muted-foreground"
               />
               <button
                 type="button"
                 onClick={() => setShowPassword(!showPassword)}
-                className="absolute inset-y-0 right-0 pr-3 flex items-center text-slate-400 hover:text-slate-600 dark:hover:text-white"
+                className="absolute inset-y-0 right-0 pr-3 flex items-center text-muted-foreground hover:text-foreground"
               >
                 {showPassword ? (
                   <EyeOff className="w-4 h-4" />
@@ -160,48 +140,16 @@ const RegisterPage = () => {
             </div>
           </div>
 
-          {/* Role Selection */}
-          <div className="grid grid-cols-2 gap-3">
-            <div>
-              <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1">
-                Account Role
-              </label>
-              <select
-                name="role"
-                value={formData.role}
-                onChange={handleChange}
-                className="w-full px-3 py-2 rounded-xl border border-slate-200 dark:border-white/15 text-xs font-semibold text-slate-800 dark:text-slate-200 bg-white dark:bg-slate-800 focus:border-indigo-500 outline-none cursor-pointer"
-              >
-                <option value="student">Student</option>
-                <option value="admin">Admin / Club Lead</option>
-              </select>
-            </div>
-
-            <div>
-              <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1">
-                Student / Faculty ID
-              </label>
-              <input
-                type="text"
-                name="studentId"
-                value={formData.studentId}
-                onChange={handleChange}
-                placeholder="e.g. 22CSE045"
-                className="w-full px-3.5 py-2 rounded-xl border border-slate-200 dark:border-white/15 bg-white dark:bg-slate-800 text-slate-900 dark:text-white text-xs focus:border-indigo-500 outline-none placeholder:text-slate-400"
-              />
-            </div>
-          </div>
-
           {/* Department */}
           <div>
-            <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1">
-              Department
+            <label className="block text-sm font-medium text-foreground mb-1.5">
+              Department *
             </label>
             <select
               name="department"
               value={formData.department}
               onChange={handleChange}
-              className="w-full px-3 py-2.5 rounded-xl border border-slate-200 dark:border-white/15 text-xs font-semibold text-slate-800 dark:text-slate-200 bg-white dark:bg-slate-800 focus:border-indigo-500 outline-none cursor-pointer"
+              className="w-full px-3.5 py-2.5 rounded-lg border border-input bg-background text-foreground text-sm focus:border-primary outline-none transition-colors cursor-pointer"
             >
               {DEPARTMENTS.map((dept) => (
                 <option key={dept} value={dept}>
@@ -211,22 +159,36 @@ const RegisterPage = () => {
             </select>
           </div>
 
+          {/* Student ID */}
+          <div>
+            <label className="block text-sm font-medium text-foreground mb-1.5">
+              Student Roll / ID Number (Optional)
+            </label>
+            <input
+              type="text"
+              name="studentId"
+              value={formData.studentId}
+              onChange={handleChange}
+              placeholder="e.g. 21BCS1045"
+              className="w-full px-3.5 py-2.5 rounded-lg border border-input bg-background text-foreground text-sm focus:border-primary outline-none transition-colors placeholder:text-muted-foreground"
+            />
+          </div>
+
           <button
             type="submit"
             disabled={loading}
-            className="w-full py-3 px-4 rounded-xl text-sm font-bold text-white bg-indigo-600 hover:bg-indigo-500 shadow-glow transition-all duration-200 disabled:opacity-50 flex items-center justify-center gap-2 mt-2"
+            className="w-full py-2.5 px-4 rounded-lg text-sm font-semibold text-primary-foreground bg-primary border border-border hover:opacity-90 transition-opacity disabled:opacity-50"
           >
-            <UserPlus className="w-4 h-4" />
-            <span>{loading ? 'Creating Account...' : 'Register Account'}</span>
+            {loading ? 'Creating Account...' : 'Register Account'}
           </button>
         </form>
 
         {/* Footer Link */}
-        <p className="text-center text-xs text-slate-500 dark:text-slate-400">
-          Already have an account?{' '}
+        <p className="text-center text-sm text-muted-foreground">
+          Already registered?{' '}
           <Link
             to="/login"
-            className="font-bold text-indigo-600 dark:text-indigo-400 hover:underline"
+            className="font-medium text-foreground hover:text-primary transition-colors underline"
           >
             Sign In Here
           </Link>

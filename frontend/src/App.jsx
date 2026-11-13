@@ -8,11 +8,13 @@ import { ThemeProvider } from './context/ThemeContext';
 import Navbar from './components/common/Navbar';
 import Footer from './components/common/Footer';
 import ProtectedRoute from './components/common/ProtectedRoute';
+import PageTransitionLoader from './components/common/PageTransitionLoader';
 
 // Pages
 import HomePage from './pages/HomePage';
 import EventsPage from './pages/EventsPage';
 import EventDetailsPage from './pages/EventDetailsPage';
+import EventRegistrationPage from './pages/EventRegistrationPage';
 import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 import UserDashboardPage from './pages/UserDashboardPage';
@@ -25,53 +27,64 @@ function App() {
       <ThemeProvider>
         <AuthProvider>
           <ToastProvider>
+            {/* Global KokonutUI Page Transition & Landing Splash Loader */}
+            <PageTransitionLoader />
+
             <div className="flex flex-col min-h-screen bg-background text-foreground transition-colors duration-300">
               <Navbar />
-              <main className="flex-1">
-              <Routes>
-                {/* Public Routes */}
-                <Route path="/" element={<HomePage />} />
-                <Route path="/events" element={<EventsPage />} />
-                <Route path="/events/:id" element={<EventDetailsPage />} />
-                <Route path="/login" element={<LoginPage />} />
-                <Route path="/register" element={<RegisterPage />} />
+              <main className="flex-1 pt-12 sm:pt-14">
+                <Routes>
+                  {/* Public Routes */}
+                  <Route path="/" element={<HomePage />} />
+                  <Route path="/events" element={<EventsPage />} />
+                  <Route path="/events/:id" element={<EventDetailsPage />} />
+                  <Route path="/login" element={<LoginPage />} />
+                  <Route path="/register" element={<RegisterPage />} />
 
-                {/* Protected Student Routes */}
-                <Route
-                  path="/dashboard"
-                  element={
-                    <ProtectedRoute>
-                      <UserDashboardPage />
-                    </ProtectedRoute>
-                  }
-                />
+                  {/* Protected Student Routes */}
+                  <Route
+                    path="/events/:id/register"
+                    element={
+                      <ProtectedRoute>
+                        <EventRegistrationPage />
+                      </ProtectedRoute>
+                    }
+                  />
+                  <Route
+                    path="/dashboard"
+                    element={
+                      <ProtectedRoute>
+                        <UserDashboardPage />
+                      </ProtectedRoute>
+                    }
+                  />
 
-                {/* Protected Admin / Organizer Routes */}
-                <Route
-                  path="/admin"
-                  element={
-                    <ProtectedRoute requireAdmin={true}>
-                      <AdminDashboardPage />
-                    </ProtectedRoute>
-                  }
-                />
-                <Route
-                  path="/admin/events/:id/participants"
-                  element={
-                    <ProtectedRoute requireAdmin={true}>
-                      <AdminParticipantsPage />
-                    </ProtectedRoute>
-                  }
-                />
+                  {/* Protected Admin / Organizer Routes */}
+                  <Route
+                    path="/admin"
+                    element={
+                      <ProtectedRoute requireAdmin={true}>
+                        <AdminDashboardPage />
+                      </ProtectedRoute>
+                    }
+                  />
+                  <Route
+                    path="/admin/events/:id/participants"
+                    element={
+                      <ProtectedRoute requireAdmin={true}>
+                        <AdminParticipantsPage />
+                      </ProtectedRoute>
+                    }
+                  />
 
-                {/* Catch-all Fallback */}
-                <Route path="*" element={<Navigate to="/" replace />} />
-              </Routes>
-            </main>
-            <Footer />
-          </div>
-        </ToastProvider>
-      </AuthProvider>
+                  {/* Catch-all Fallback */}
+                  <Route path="*" element={<Navigate to="/" replace />} />
+                </Routes>
+              </main>
+              <Footer />
+            </div>
+          </ToastProvider>
+        </AuthProvider>
       </ThemeProvider>
     </Router>
   );

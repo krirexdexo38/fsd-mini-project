@@ -57,6 +57,12 @@ const registerForEvent = async (req, res, next) => {
 
       // If previously cancelled, re-activate registration
       registration.status = 'registered';
+      registration.registrationType = req.body.registrationType || (req.body.teamSize > 1 ? 'team' : 'individual');
+      registration.teamName = req.body.teamName || registration.teamName || '';
+      registration.teamSize = req.body.teamSize || registration.teamSize || 1;
+      registration.teamMembers = req.body.teamMembers || registration.teamMembers || [];
+      registration.primaryContact = req.body.primaryContact || registration.primaryContact || {};
+      registration.notes = req.body.notes || registration.notes || '';
       registration.registeredAt = new Date();
       await registration.save();
     } else {
@@ -64,6 +70,12 @@ const registerForEvent = async (req, res, next) => {
         event: eventId,
         user: userId,
         status: 'registered',
+        registrationType: req.body.registrationType || (req.body.teamSize > 1 ? 'team' : 'individual'),
+        teamName: req.body.teamName || '',
+        teamSize: req.body.teamSize || 1,
+        teamMembers: req.body.teamMembers || [],
+        primaryContact: req.body.primaryContact || {},
+        notes: req.body.notes || '',
         registeredAt: new Date(),
       });
     }

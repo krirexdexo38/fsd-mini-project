@@ -16,7 +16,7 @@ const BANNERS = {
 
 const users = [
   {
-    name: 'Dr. Ramesh Sharma',
+    name: 'Er. Gagandeep Kaur',
     email: 'admin@campushub.edu',
     password: 'Admin@123',
     role: 'admin',
@@ -24,7 +24,7 @@ const users = [
     studentId: 'FAC-CSE-01',
   },
   {
-    name: 'Ananya Verma',
+    name: 'Krish Khanna',
     email: 'student@campushub.edu',
     password: 'Student@123',
     role: 'student',

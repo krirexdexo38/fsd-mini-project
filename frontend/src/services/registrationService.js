@@ -2,8 +2,8 @@ import api from './api';
 
 export const registrationService = {
   // Register for an event
-  registerForEvent: async (eventId) => {
-    const response = await api.post(`/events/${eventId}/register`);
+  registerForEvent: async (eventId, data = {}) => {
+    const response = await api.post(`/events/${eventId}/register`, data);
     return response.data;
   },
 

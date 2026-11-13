@@ -1,0 +1,7 @@
+interface:
+  display_name: "Work Queue"
+  short_description: "Run and check repository tasks with coding agents"
+  default_prompt: "Use $work-queue to manage this project's task queue."
+
+policy:
+  allow_implicit_invocation: false

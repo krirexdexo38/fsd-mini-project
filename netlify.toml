@@ -1,0 +1,21 @@
+# ============================================================
+# Netlify configuration for CampusHub monorepo
+# Repo layout:  /frontend  (Vite + React)
+#               /backend   (Express + MongoDB — deployed separately)
+# ============================================================
+
+[build]
+  # Tell Netlify to cd into frontend/ before doing anything
+  base    = "frontend"
+  # Run the Vite production build
+  command = "npm run build"
+  # Vite outputs to frontend/dist — relative to `base`
+  publish = "dist"
+
+# ── SPA fallback ────────────────────────────────────────────
+# React Router uses BrowserRouter, so every URL must return
+# index.html and let the client-side router take over.
+[[redirects]]
+  from   = "/*"
+  to     = "/index.html"
+  status = 200

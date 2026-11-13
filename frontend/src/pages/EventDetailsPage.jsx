@@ -7,10 +7,8 @@ import {
   Users,
   Building2,
   CheckCircle2,
-  AlertCircle,
   ArrowLeft,
   Share2,
-  XCircle,
 } from 'lucide-react';
 import { eventService } from '../services/eventService';
 import { registrationService } from '../services/registrationService';
@@ -78,25 +76,13 @@ const EventDetailsPage = () => {
   );
   const remainingSeats = Math.max(0, event.capacity - event.registeredCount);
 
-  // Handle Event Registration
-  const handleRegister = async () => {
+  // Handle Event Registration navigation
+  const handleRegister = () => {
     if (!isAuthenticated) {
-      navigate('/login', { state: { from: `/events/${id}` } });
+      navigate('/login', { state: { from: `/events/${id}/register` } });
       return;
     }
-
-    setActionLoading(true);
-    try {
-      const res = await registrationService.registerForEvent(id);
-      if (res.success) {
-        toast.success('🎉 You have successfully registered for this event!');
-        await fetchEventData();
-      }
-    } catch (err) {
-      toast.error(err.message || 'Registration failed.');
-    } finally {
-      setActionLoading(false);
-    }
+    navigate(`/events/${id}/register`);
   };
 
   // Handle Registration Cancellation
@@ -127,7 +113,7 @@ const EventDetailsPage = () => {
       <div className="flex items-center justify-between">
         <Link
           to="/events"
-          className="inline-flex items-center gap-2 text-xs font-bold text-muted-foreground hover:text-primary transition-colors"
+          className="inline-flex items-center gap-2 text-sm font-semibold text-muted-foreground hover:text-foreground transition-colors"
         >
           <ArrowLeft className="w-4 h-4" />
           <span>Back to All Events</span>
@@ -135,19 +121,19 @@ const EventDetailsPage = () => {
 
         <button
           onClick={handleShare}
-          className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl border border-border bg-card text-xs font-semibold text-foreground hover:bg-muted transition-colors shadow-soft"
+          className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-lg border border-border bg-card text-sm font-medium text-foreground hover:bg-muted transition-colors"
         >
-          <Share2 className="w-3.5 h-3.5 text-muted-foreground" />
+          <Share2 className="w-4 h-4 text-muted-foreground" />
           <span>Share</span>
         </button>
       </div>
 
       {/* Hero Banner */}
-      <div className="relative rounded-3xl overflow-hidden bg-card shadow-card border border-border">
+      <div className="relative rounded-xl overflow-hidden bg-card border border-border">
         <img
           src={event.bannerUrl}
           alt={event.title}
-          className="w-full h-64 sm:h-96 object-cover opacity-90"
+          className="w-full h-64 sm:h-96 object-cover"
           onError={(e) => {
             e.target.src =
               'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1200&auto=format&fit=crop&q=80';
@@ -158,21 +144,23 @@ const EventDetailsPage = () => {
         <div className="absolute bottom-6 left-6 right-6 text-white space-y-3">
           <div className="flex flex-wrap items-center gap-2">
             <Badge variant={event.category}>{event.category}</Badge>
-            <Badge variant={event.status} className="capitalize">
-              {event.status}
-            </Badge>
+            {event.status !== 'published' && (
+              <Badge variant={event.status} className="capitalize">
+                {event.status}
+              </Badge>
+            )}
             {isRegistered && (
-              <span className="inline-flex items-center gap-1 px-3 py-0.5 rounded-full text-xs font-bold bg-emerald-500 text-white shadow-sm">
-                <CheckCircle2 className="w-3.5 h-3.5" />
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-md text-sm font-medium bg-primary text-primary-foreground border border-border">
+                <CheckCircle2 className="w-4 h-4" />
                 You're Registered
               </span>
             )}
           </div>
-          <h1 className="text-2xl sm:text-4xl font-extrabold tracking-tight text-white leading-tight font-serif">
+          <h1 className="text-2xl sm:text-4xl font-extrabold tracking-tight text-white leading-tight font-display">
             {event.title}
           </h1>
-          <p className="text-sm font-semibold text-slate-200 flex items-center gap-2">
-            <Building2 className="w-4 h-4 text-accent" />
+          <p className="text-sm font-medium text-white/80 flex items-center gap-2">
+            <Building2 className="w-4 h-4 text-primary" />
             Organized by {event.organizer}
           </p>
         </div>
@@ -182,30 +170,30 @@ const EventDetailsPage = () => {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         {/* Left Column (2 Cols): Event Description & Schedule */}
         <div className="lg:col-span-2 space-y-6">
-          <div className="bg-card rounded-2xl p-6 sm:p-8 border border-border shadow-soft space-y-6">
-            <h2 className="text-lg font-bold text-foreground border-b border-border pb-3 font-serif">
+          <div className="bg-card rounded-xl p-6 sm:p-8 border border-border space-y-6">
+            <h2 className="text-lg font-bold text-foreground border-b border-border pb-3 font-display">
               About This Event
             </h2>
-            <div className="prose prose-slate max-w-none text-muted-foreground text-sm leading-relaxed whitespace-pre-line">
+            <div className="text-muted-foreground text-sm leading-relaxed whitespace-pre-line">
               {event.description}
             </div>
 
             {/* Event Highlights / Requirements */}
             <div className="pt-4 border-t border-border">
-              <h3 className="text-sm font-bold text-foreground mb-3 font-serif">
+              <h3 className="text-sm font-bold text-foreground mb-3 font-display">
                 Key Guidelines for Attendees
               </h3>
-              <ul className="space-y-2 text-xs text-muted-foreground font-medium">
+              <ul className="space-y-2.5 text-sm text-muted-foreground">
                 <li className="flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-500 flex-shrink-0" />
+                  <CheckCircle2 className="w-4 h-4 text-foreground flex-shrink-0" />
                   <span>Valid college ID card mandatory at entry gate.</span>
                 </li>
                 <li className="flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-500 flex-shrink-0" />
+                  <CheckCircle2 className="w-4 h-4 text-foreground flex-shrink-0" />
                   <span>Certificates of participation provided to all verified attendees.</span>
                 </li>
                 <li className="flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-500 flex-shrink-0" />
+                  <CheckCircle2 className="w-4 h-4 text-foreground flex-shrink-0" />
                   <span>Please arrive at the venue 15 minutes before scheduled start time.</span>
                 </li>
               </ul>
@@ -213,18 +201,19 @@ const EventDetailsPage = () => {
           </div>
         </div>
 
-        {/* Right Column (1 Col): Meta Card & Smart Registration */}
+        {/* Right Column (1 Col): Key Logistics & Registration Status */}
         <div className="space-y-6">
-          <div className="bg-card rounded-2xl p-6 border border-border shadow-soft space-y-6">
-            <h3 className="text-sm font-bold text-foreground uppercase tracking-wider text-muted-foreground font-serif">
+          <div className="bg-card rounded-xl p-6 border border-border space-y-5">
+            <h3 className="text-base font-bold text-foreground border-b border-border pb-3 font-display">
               Event Details
             </h3>
 
-            <div className="space-y-4 text-sm text-foreground/85">
+            <div className="space-y-4 text-sm font-medium">
               <div className="flex items-start gap-3">
-                <Calendar className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+                <Calendar className="w-4 h-4 text-foreground/70 flex-shrink-0 mt-0.5" />
                 <div>
-                  <p className="font-bold text-foreground">
+                  <p className="text-muted-foreground">Date</p>
+                  <p className="text-foreground">
                     {eventDate.toLocaleDateString('en-US', {
                       weekday: 'long',
                       month: 'long',
@@ -232,137 +221,85 @@ const EventDetailsPage = () => {
                       year: 'numeric',
                     })}
                   </p>
-                  <p className="text-xs text-muted-foreground">Event Date</p>
                 </div>
               </div>
 
               <div className="flex items-start gap-3">
-                <Clock className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+                <Clock className="w-4 h-4 text-foreground/70 flex-shrink-0 mt-0.5" />
                 <div>
-                  <p className="font-bold text-foreground">
+                  <p className="text-muted-foreground">Time</p>
+                  <p className="text-foreground">
                     {event.startTime} - {event.endTime}
                   </p>
-                  <p className="text-xs text-muted-foreground">Session Timings</p>
                 </div>
               </div>
 
               <div className="flex items-start gap-3">
-                <MapPin className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+                <MapPin className="w-4 h-4 text-foreground/70 flex-shrink-0 mt-0.5" />
                 <div>
-                  <p className="font-bold text-foreground">{event.venue}</p>
-                  <p className="text-xs text-muted-foreground">Campus Venue</p>
+                  <p className="text-muted-foreground">Location</p>
+                  <p className="text-foreground">{event.venue}</p>
                 </div>
               </div>
 
               <div className="flex items-start gap-3">
-                <AlertCircle className="w-5 h-5 text-accent flex-shrink-0 mt-0.5" />
+                <Users className="w-4 h-4 text-foreground/70 flex-shrink-0 mt-0.5" />
                 <div>
-                  <p className="font-bold text-foreground">
-                    {deadlineDate.toLocaleDateString('en-US', {
-                      month: 'short',
-                      day: 'numeric',
-                      year: 'numeric',
-                    })}
+                  <p className="text-muted-foreground">Registration Capacity</p>
+                  <p className="text-foreground">
+                    {event.registeredCount} / {event.capacity} registered
                   </p>
-                  <p className="text-xs text-muted-foreground">Registration Closes</p>
+                  <p className="text-muted-foreground text-xs mt-0.5">
+                    {remainingSeats} {remainingSeats === 1 ? 'seat' : 'seats'} remaining
+                  </p>
                 </div>
               </div>
             </div>
 
-            {/* Capacity Meter */}
-            <div className="pt-4 border-t border-border space-y-2">
-              <div className="flex items-center justify-between text-xs font-bold">
-                <span className="text-muted-foreground flex items-center gap-1.5">
-                  <Users className="w-4 h-4" /> Capacity
-                </span>
-                <span
-                  className={
-                    isFull
-                      ? 'text-destructive'
-                      : percentFilled > 80
-                      ? 'text-amber-500'
-                      : 'text-primary'
-                  }
-                >
-                  {remainingSeats} seats left ({event.registeredCount} /{' '}
-                  {event.capacity})
-                </span>
-              </div>
-              <div className="w-full h-2 bg-muted rounded-full overflow-hidden">
-                <div
-                  className={`h-full rounded-full transition-all duration-500 ${
-                    isFull
-                      ? 'bg-destructive'
-                      : percentFilled > 80
-                      ? 'bg-amber-500'
-                      : 'bg-primary'
-                  }`}
-                  style={{ width: `${percentFilled}%` }}
-                />
-              </div>
+            {/* Progress Bar */}
+            <div className="w-full h-2 bg-muted rounded-full overflow-hidden border border-border/40">
+              <div
+                className={`h-full rounded-full transition-all duration-300 ${
+                  isFull ? 'bg-destructive' : 'bg-primary'
+                }`}
+                style={{ width: `${percentFilled}%` }}
+              />
             </div>
 
-            {/* Smart Action Button States */}
+            {/* Action Buttons */}
             <div className="pt-2">
-              {!isAuthenticated ? (
-                <button
-                  onClick={handleRegister}
-                  className="w-full py-3 px-4 rounded-xl text-sm font-bold text-primary-foreground bg-primary hover:opacity-90 shadow-soft hover:shadow-card transition-all"
-                >
-                  Sign In to Register
-                </button>
-              ) : isRegistered ? (
+              {isRegistered ? (
                 <div className="space-y-3">
-                  <div className="w-full py-2.5 px-4 rounded-xl text-sm font-bold text-emerald-600 dark:text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 text-center flex items-center justify-center gap-2">
-                    <CheckCircle2 className="w-4 h-4 text-emerald-500" />
-                    <span>Registered Successfully</span>
+                  <div className="p-3 bg-muted rounded-lg border border-border text-center text-sm font-medium text-foreground">
+                    You have a confirmed reservation for this event.
                   </div>
-
                   {!isPastEvent && (
                     <button
                       onClick={() => setShowCancelModal(true)}
-                      disabled={actionLoading}
-                      className="w-full py-2 px-4 rounded-xl text-xs font-bold text-destructive hover:bg-destructive/10 border border-destructive/30 transition-colors"
+                      className="w-full py-2.5 px-4 rounded-lg text-sm font-semibold text-destructive hover:bg-destructive/10 border border-destructive/20 transition-colors"
                     >
                       Cancel Registration
                     </button>
                   )}
                 </div>
-              ) : isPastEvent || event.status === 'completed' ? (
-                <button
-                  disabled
-                  className="w-full py-3 px-4 rounded-xl text-sm font-bold text-muted-foreground bg-muted cursor-not-allowed text-center"
-                >
-                  Event Ended
-                </button>
-              ) : event.status === 'cancelled' ? (
-                <button
-                  disabled
-                  className="w-full py-3 px-4 rounded-xl text-sm font-bold text-destructive bg-destructive/10 cursor-not-allowed text-center"
-                >
-                  Event Cancelled
-                </button>
+              ) : isPastEvent ? (
+                <div className="p-3 bg-muted rounded-lg border border-border text-center text-sm font-medium text-muted-foreground">
+                  This event has already concluded.
+                </div>
               ) : isDeadlinePassed ? (
-                <button
-                  disabled
-                  className="w-full py-3 px-4 rounded-xl text-sm font-bold text-amber-600 dark:text-amber-400 bg-amber-500/10 border border-amber-500/20 cursor-not-allowed text-center"
-                >
-                  Registration Closed (Deadline Passed)
-                </button>
+                <div className="p-3 bg-muted rounded-lg border border-border text-center text-sm font-medium text-muted-foreground">
+                  Registration for this event has closed.
+                </div>
               ) : isFull ? (
-                <button
-                  disabled
-                  className="w-full py-3 px-4 rounded-xl text-sm font-bold text-destructive bg-destructive/10 border border-destructive/20 cursor-not-allowed text-center"
-                >
-                  Event Full (Capacity Reached)
-                </button>
+                <div className="p-3 bg-muted rounded-lg border border-border text-center text-sm font-medium text-destructive">
+                  All seats have been filled.
+                </div>
               ) : (
                 <button
                   onClick={handleRegister}
-                  disabled={actionLoading}
-                  className="w-full py-3 px-4 rounded-xl text-sm font-bold text-primary-foreground bg-primary hover:opacity-90 shadow-soft hover:shadow-card transition-all disabled:opacity-50"
+                  className="w-full py-3 px-4 rounded-lg text-sm font-semibold text-primary-foreground bg-primary border border-border hover:opacity-90 transition-opacity"
                 >
-                  {actionLoading ? 'Registering...' : 'Register For Event'}
+                  {isAuthenticated ? 'Register Now' : 'Sign In to Register'}
                 </button>
               )}
             </div>
@@ -371,35 +308,35 @@ const EventDetailsPage = () => {
       </div>
 
       {/* Cancellation Confirmation Modal */}
-      <Modal
-        isOpen={showCancelModal}
-        onClose={() => setShowCancelModal(false)}
-        title="Cancel Event Registration"
-      >
-        <div className="space-y-4">
-          <p className="text-sm text-muted-foreground leading-relaxed">
-            Are you sure you want to cancel your registration for{' '}
-            <strong className="text-foreground">{event.title}</strong>? Your seat
-            will be freed up for other students.
-          </p>
-
-          <div className="flex items-center justify-end gap-3 pt-3 border-t border-border">
-            <button
-              onClick={() => setShowCancelModal(false)}
-              className="px-4 py-2 text-xs font-bold text-muted-foreground hover:bg-muted rounded-xl transition-colors"
-            >
-              Keep Registration
-            </button>
-            <button
-              onClick={handleCancelRegistration}
-              disabled={actionLoading}
-              className="px-4 py-2 text-xs font-bold text-destructive-foreground bg-destructive hover:opacity-90 rounded-xl transition-opacity disabled:opacity-50"
-            >
-              {actionLoading ? 'Cancelling...' : 'Confirm Cancellation'}
-            </button>
+      {showCancelModal && (
+        <Modal
+          isOpen={showCancelModal}
+          onClose={() => setShowCancelModal(false)}
+          title="Cancel Registration"
+        >
+          <div className="space-y-4">
+            <p className="text-sm text-muted-foreground">
+              Are you sure you want to cancel your registration for{' '}
+              <strong className="text-foreground">{event.title}</strong>? Your seat will be freed up for other students.
+            </p>
+            <div className="flex items-center justify-end gap-3 pt-2">
+              <button
+                onClick={() => setShowCancelModal(false)}
+                className="px-4 py-2 text-sm font-medium text-foreground hover:bg-muted rounded-lg border border-border"
+              >
+                Keep Reservation
+              </button>
+              <button
+                onClick={handleCancelRegistration}
+                disabled={actionLoading}
+                className="px-4 py-2 text-sm font-semibold text-destructive-foreground bg-destructive hover:opacity-90 rounded-lg disabled:opacity-50"
+              >
+                {actionLoading ? 'Cancelling...' : 'Confirm Cancellation'}
+              </button>
+            </div>
           </div>
-        </div>
-      </Modal>
+        </Modal>
+      )}
     </div>
   );
 };

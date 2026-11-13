@@ -3,12 +3,9 @@ import { useSearchParams } from 'react-router-dom';
 import { eventService } from '../services/eventService';
 import EventGrid from '../components/events/EventGrid';
 import EventFilters from '../components/events/EventFilters';
-import Particles from '../components/common/Particles';
-import { useTheme } from '../context/ThemeContext';
-import { CalendarDays, ChevronLeft, ChevronRight } from 'lucide-react';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 const EventsPage = () => {
-  const { isDark } = useTheme();
   const [searchParams, setSearchParams] = useSearchParams();
 
   // Initialize filters from URL query parameters
@@ -61,7 +58,6 @@ const EventsPage = () => {
       }
     };
 
-    // Debounce search input slightly
     const timer = setTimeout(fetchEvents, 300);
     return () => clearTimeout(timer);
   }, [search, category, timeframe, sort, page]);
@@ -76,44 +72,20 @@ const EventsPage = () => {
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-8">
-      {/* Notebook Header Banner with Particles Canvas */}
-      <div className="relative overflow-hidden rounded-3xl border border-border p-6 sm:p-8 bg-card shadow-sm">
-        {/* WebGL Particles Canvas */}
-        <div className="absolute inset-0 z-0">
-          <Particles
-            key={isDark ? 'dark' : 'light'}
-            particleColors={isDark ? ['#ffffff'] : ['#000000', '#09090b', '#18181b']}
-            particleCount={120}
-            particleSpread={8}
-            speed={0.1}
-            particleBaseSize={80}
-            moveParticlesOnHover={true}
-            alphaParticles={false}
-            disableRotation={false}
-          />
+      {/* Header Banner */}
+      <div className="rounded-xl border border-border p-6 sm:p-8 bg-card flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div>
+          <h1 className="text-3xl sm:text-4xl font-extrabold text-foreground tracking-tight font-display">
+            Explore Campus Events
+          </h1>
+          <p className="text-sm text-muted-foreground mt-1 max-w-xl">
+            Discover upcoming hackathons, tech talks, cultural galas, and tournaments across university departments.
+          </p>
         </div>
 
-        {/* Ambient Gradient Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-r from-card/60 via-card/30 to-transparent pointer-events-none z-0" />
-
-        <div className="relative z-10 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-          <div>
-            <div className="flex items-center gap-2 text-primary font-bold text-xs uppercase tracking-wider mb-1.5">
-              <CalendarDays className="w-4 h-4" />
-              <span>Campus Catalog</span>
-            </div>
-            <h1 className="text-3xl sm:text-4xl font-extrabold text-foreground tracking-normal">
-              Explore Campus Events
-            </h1>
-            <p className="text-sm text-muted-foreground mt-1 max-w-xl">
-              Discover upcoming hackathons, tech talks, cultural galas, and tournaments across universities.
-            </p>
-          </div>
-
-          <div className="text-xs font-semibold text-muted-foreground bg-card px-4 py-2.5 rounded-xl border border-border shadow-xs self-start sm:self-center">
-            Showing <span className="font-bold text-foreground">{events.length}</span> of{' '}
-            <span className="font-bold text-foreground">{totalCount}</span> events
-          </div>
+        <div className="text-sm font-medium text-muted-foreground bg-muted px-4 py-2 rounded-lg border border-border self-start sm:self-center">
+          Showing <span className="font-bold text-foreground">{events.length}</span> of{' '}
+          <span className="font-bold text-foreground">{totalCount}</span> events
         </div>
       </div>
 
@@ -155,20 +127,20 @@ const EventsPage = () => {
           <button
             onClick={() => setPage((p) => Math.max(1, p - 1))}
             disabled={page === 1 || loading}
-            className="p-2.5 rounded-xl border border-border bg-card text-foreground hover:bg-muted disabled:opacity-40 disabled:cursor-not-allowed transition-colors shadow-2xs"
+            className="p-2 rounded-lg border border-border bg-card text-foreground hover:bg-muted disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
             aria-label="Previous Page"
           >
             <ChevronLeft className="w-5 h-5" />
           </button>
 
-          <span className="px-4 py-2 text-xs font-bold text-foreground bg-card border border-border rounded-xl shadow-soft">
+          <span className="px-4 py-2 text-sm font-medium text-foreground bg-card border border-border rounded-lg">
             Page {page} of {totalPages}
           </span>
 
           <button
             onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
             disabled={page === totalPages || loading}
-            className="p-2.5 rounded-xl border border-border bg-card text-foreground hover:bg-muted disabled:opacity-40 disabled:cursor-not-allowed transition-colors shadow-2xs"
+            className="p-2 rounded-lg border border-border bg-card text-foreground hover:bg-muted disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
             aria-label="Next Page"
           >
             <ChevronRight className="w-5 h-5" />

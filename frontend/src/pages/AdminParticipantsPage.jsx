@@ -221,9 +221,14 @@ const AdminParticipantsPage = () => {
                       key={reg._id}
                       className="hover:bg-muted/40 transition-colors"
                     >
-                      {/* Name */}
+                      {/* Name & Team */}
                       <td className="py-3.5 px-5 font-bold text-foreground">
-                        {reg.user?.name || 'Unknown Student'}
+                        <div>{reg.user?.name || 'Unknown Student'}</div>
+                        {reg.teamName && (
+                          <div className="text-[11px] font-normal text-primary mt-0.5">
+                            Team: <span className="font-semibold">{reg.teamName}</span> ({reg.teamSize || 1} members)
+                          </div>
+                        )}
                       </td>
 
                       {/* Email */}

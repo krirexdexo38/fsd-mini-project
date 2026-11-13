@@ -3,40 +3,40 @@
 @tailwind utilities;
 
 :root {
-  --background: oklch(0.9821 0 0);
-  --foreground: oklch(0.3485 0 0);
+  --background: oklch(1 0 0);
+  --foreground: oklch(0 0 0);
   --card: oklch(1.0000 0 0);
   --card-foreground: oklch(0.3485 0 0);
   --popover: oklch(1.0000 0 0);
   --popover-foreground: oklch(0.3485 0 0);
-  --primary: oklch(0.4891 0 0);
-  --primary-foreground: oklch(0.9551 0 0);
-  --secondary: oklch(0.9006 0 0);
-  --secondary-foreground: oklch(0.3485 0 0);
+  --primary: oklch(0.8410 0.2380 128.8500);
+  --primary-foreground: oklch(0 0 0);
+  --secondary: oklch(0.8410 0.2380 128.8500);
+  --secondary-foreground: oklch(0 0 0);
   --muted: oklch(0.9158 0 0);
   --muted-foreground: oklch(0.4313 0 0);
-  --accent: oklch(0.9354 0.0456 94.8549);
-  --accent-foreground: oklch(0.4015 0.0436 37.9587);
+  --accent: oklch(0.9380 0.1270 124.3210);
+  --accent-foreground: oklch(0.4460 0.0300 256.8020);
   --destructive: oklch(0.6627 0.0978 20.0041);
   --destructive-foreground: oklch(1.0000 0 0);
-  --border: oklch(0.5538 0.0025 17.2320);
+  --border: oklch(0 0 0);
   --input: oklch(1.0000 0 0);
-  --ring: oklch(0.7058 0 0);
-  --chart-1: oklch(0.3211 0 0);
-  --chart-2: oklch(0.4495 0 0);
-  --chart-3: oklch(0.5693 0 0);
+  --ring: oklch(1 0 0);
+  --chart-1: oklch(0.8970 0.1960 126.6650);
+  --chart-2: oklch(0.8410 0.2380 128.8500);
+  --chart-3: oklch(0.9860 0.0310 120.7570);
   --chart-4: oklch(0.6830 0 0);
   --chart-5: oklch(0.7921 0 0);
   --sidebar: oklch(0.9551 0 0);
   --sidebar-foreground: oklch(0.3485 0 0);
   --sidebar-primary: oklch(0.4891 0 0);
   --sidebar-primary-foreground: oklch(0.9551 0 0);
-  --sidebar-accent: oklch(0.9354 0.0456 94.8549);
+  --sidebar-accent: oklch(0.9670 0.0670 122.3280);
   --sidebar-accent-foreground: oklch(0.4015 0.0436 37.9587);
   --sidebar-border: oklch(0.8078 0 0);
   --sidebar-ring: oklch(0.7058 0 0);
-  --font-sans: 'Architects Daughter', cursive, sans-serif;
-  --font-serif: "Times New Roman", Times, serif;
+  --font-sans: 'Allerta Stencil', ui-sans-serif, sans-serif, system-ui;
+  --font-serif: Lora, ui-serif, serif;
   --font-mono: "Courier New", Courier, monospace;
   --radius: 0.625rem;
   --shadow-x: 1px;
@@ -53,7 +53,7 @@
   --shadow-lg: 1px 4px 5px 0px hsl(0 0% 0% / 0.03), 1px 4px 6px -1px hsl(0 0% 0% / 0.03);
   --shadow-xl: 1px 4px 5px 0px hsl(0 0% 0% / 0.03), 1px 8px 10px -1px hsl(0 0% 0% / 0.03);
   --shadow-2xl: 1px 4px 5px 0px hsl(0 0% 0% / 0.07);
-  --tracking-normal: 0.5px;
+  --tracking-normal: 0em;
   --spacing: 0.25rem;
 }
 
@@ -64,21 +64,21 @@
   --card-foreground: oklch(0.8945 0 0);
   --popover: oklch(0.3211 0 0);
   --popover-foreground: oklch(0.8945 0 0);
-  --primary: oklch(0.7572 0 0);
-  --primary-foreground: oklch(0.2891 0 0);
-  --secondary: oklch(0.4676 0 0);
-  --secondary-foreground: oklch(0.8078 0 0);
+  --primary: oklch(0.8410 0.2380 128.8500);
+  --primary-foreground: oklch(0 0 0);
+  --secondary: oklch(0.7680 0.2330 130.8500);
+  --secondary-foreground: oklch(0 0 0);
   --muted: oklch(0.3904 0 0);
   --muted-foreground: oklch(0.7058 0 0);
-  --accent: oklch(0.9067 0 0);
-  --accent-foreground: oklch(0.3211 0 0);
+  --accent: oklch(0.8970 0.1960 126.6650);
+  --accent-foreground: oklch(0.4460 0.0300 256.8020);
   --destructive: oklch(0.7915 0.0491 18.2410);
   --destructive-foreground: oklch(0.2891 0 0);
-  --border: oklch(0.4276 0 0);
-  --input: oklch(0.3211 0 0);
+  --border: oklch(0 0 0);
+  --input: oklch(0.7070 0.0220 261.3250);
   --ring: oklch(0.8078 0 0);
-  --chart-1: oklch(0.9521 0 0);
-  --chart-2: oklch(0.8576 0 0);
+  --chart-1: oklch(0.8970 0.1960 126.6650);
+  --chart-2: oklch(0.7680 0.2330 130.8500);
   --chart-3: oklch(0.7572 0 0);
   --chart-4: oklch(0.6534 0 0);
   --chart-5: oklch(0.5452 0 0);
@@ -90,8 +90,8 @@
   --sidebar-accent-foreground: oklch(0.3211 0 0);
   --sidebar-border: oklch(0.4276 0 0);
   --sidebar-ring: oklch(0.8078 0 0);
-  --font-sans: 'Architects Daughter', cursive, sans-serif;
-  --font-serif: Georgia, serif;
+  --font-sans: 'Allerta Stencil', ui-sans-serif, sans-serif, system-ui;
+  --font-serif: Lora, ui-serif, serif;
   --font-mono: "Fira Code", "Courier New", monospace;
   --radius: 0.625rem;
   --shadow-x: 1px;
@@ -120,7 +120,7 @@
   }
 
   body {
-    font-family: var(--font-sans);
+    font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     background-color: var(--background);
     color: var(--foreground);
     letter-spacing: var(--tracking-normal);
@@ -133,7 +133,7 @@
   }
 }
 
-/* Custom Notebook Scrollbar */
+/* Custom Scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
@@ -153,7 +153,7 @@
   background: var(--primary);
 }
 
-/* Notebook Glass & Paper Cards */
+/* Clean Panels & Cards */
 .glass-panel {
   background: var(--card);
   border: 1px solid var(--border);
@@ -182,3 +182,44 @@
   background-size: 200% 100%;
   animation: shimmer 1.5s infinite;
 }
+
+/* 3D Spin / Flip Text Animation */
+.spin-text-wrapper {
+  position: relative;
+  display: inline-flex;
+  flex-direction: column;
+  height: 1.35em;
+  overflow: hidden;
+  line-height: 1.35em;
+  perspective: 500px;
+}
+
+.spin-text-item {
+  display: inline-block;
+  transform-origin: 50% 100%;
+  transform: translateY(0%) rotateX(0deg);
+  transition: transform 320ms cubic-bezier(0.16, 1, 0.3, 1), opacity 320ms ease;
+  will-change: transform, opacity;
+}
+
+.spin-text-clone {
+  position: absolute;
+  inset: 0;
+  display: inline-block;
+  transform-origin: 50% 0%;
+  transform: translateY(100%) rotateX(-90deg);
+  opacity: 0;
+  transition: transform 320ms cubic-bezier(0.16, 1, 0.3, 1), opacity 320ms ease;
+  will-change: transform, opacity;
+}
+
+.group:hover .spin-text-item {
+  transform: translateY(-100%) rotateX(90deg);
+  opacity: 0;
+}
+
+.group:hover .spin-text-clone {
+  transform: translateY(0%) rotateX(0deg);
+  opacity: 1;
+}
+
